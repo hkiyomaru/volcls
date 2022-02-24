@@ -43,13 +43,17 @@ make -k -f scripts/extract_event.mk \
   PYTHON=$(poetry run which python)
 ```
 
-### 2. Training Dataset Construction
+### 2. Dataset Construction
 
 ```shell
 mkdir ./data/datasets/$TARGET
+# Training
 poetry run python src/create_training_dataset.py \
   --data_dir $(realpath ./data/extracted/$TARGET) \
   --output_dir $(realpath ./data/datasets/$TARGET)
+# Evaluation
+cp ./data/eval/$TARGET/*.jsonl ./data/datasets/$TARGET
+gzip ./data/datasets/$TARGET/*.jsonl
 ```
 
 When using Sampling and Occlusion (SOC), run the following commands in addition.
@@ -67,4 +71,26 @@ unzip ./data/NICT_BERT-base_JapaneseWikipedia_32K_BPE.zip -d ./data
 poetry run python src/assign_sample.py \
   --data_dir $(realpath ./data/datasets/$TARGET) \
   --model_name_or_path ./data/NICT_BERT-base_JapaneseWikipedia_32K_BPE
+```
+
+## Training
+
+Run the following command.
+
+```shell
+TARGET="en"
+poetry run python src/train.py \
+  --vol {NONE|VANILLA|WR|SOC|ADA} \
+  --ani {NONE|VANILLA|WR|SOC|ADA} \
+  --data_dir ./data/datasets/$TARGET \
+  --model_name_or_path bert-base-cased \
+  --max_epochs 3
+
+TARGET="ja"
+poetry run python src/train.py \
+  --vol {NONE|VANILLA|WR|SOC|ADA} \
+  --ani {NONE|VANILLA|WR|SOC|ADA} \
+  --data_dir ./data/datasets/$TARGET \
+  --model_name_or_path ./data/NICT_BERT-base_JapaneseWikipedia_32K_BPE \
+  --max_epochs 3
 ```
