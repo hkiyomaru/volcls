@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "volcls"
+version = "0.1.0"
+description = ""
+authors = ["Hirokazu Kiyomaru <h.kiyomaru@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pyknp = "^0.5.0"
+pyknp-eventgraph = "^6.1.7"
+tqdm = "^4.60.0"
+torch = "^1.8.1"
+transformers = "^4.6.0"
+scikit-learn = "^0.24.1"
+pytorch-lightning = "^1.3.1"
+krippendorff = "^0.4.0"
+dash = "^1.20.0"
+dash-bootstrap-components = "^0.12.2"
+pandas = "^1.2.4"
+tabulate = "^0.8.9"
+spacy = "^3.0.6"
+deplacy = "^1.9.8"
+textformatting = {git = "https://github.com/ku-nlp/python-textformatting.git"}
+emoji = "^1.4.2"
+fastapi = "^0.70.0"
+uvicorn = "^0.15.0"
+ginza = "^5.0.3"
+ja-ginza = "^5.0.0"
+
+[tool.poetry.dev-dependencies]
+jupyterlab = "^3.0.15"
+pytest = "^6.2.4"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.black]
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
