@@ -28,26 +28,26 @@ poetry run python -m spacy download en_core_web_sm  # Download the model of en_c
 
 ### 1. Event extraction
 
-Run the following command.
-This repository contains a small sample of CC-100.
+Run the following commands.
+This repository contains a very small portion of CC-100.
 Visit [https://data.statmt.org/cc-100/](https://data.statmt.org/cc-100/) to download CC-100.
 
 ```shell
-# Japanese
-mkdir ./data/extracted/ja
+TARGET="ja"  # or "en"
+mkdir ./data/extracted/$TARGET
 make -k -f scripts/extract_event.mk \
-  DATA_DIR=$(realpath ./data/cc-100/ja) \
-  RESULT_DIR=$(realpath ./data/extracted/ja) \
-  LANG=ja \
+  DATA_DIR=$(realpath ./data/cc-100/$TARGET) \
+  RESULT_DIR=$(realpath ./data/extracted/$TARGET) \
+  LANG=$TARGET \
   ROOT_DIR=$(pwd) \
   PYTHON=$(poetry run which python)
+```
 
-# English
-mkdir ./data/extracted/ja
-make -k -f scripts/extract_event.mk \
-  DATA_DIR=$(realpath ./data/cc-100/ja) \
-  RESULT_DIR=$(realpath ./data/extracted/ja) \
-  LANG=ja \
-  ROOT_DIR=$(pwd) \
-  PYTHON=$(poetry run which python)
+### 2. Training Dataset Construction
+
+```shell
+mkdir ./data/datasets/$TARGET
+poetry run python src/create_training_dataset.py \
+  --data_dir $(realpath ./data/extracted/$TARGET) \
+  --output_dir $(realpath ./data/datasets/$TARGET)
 ```
