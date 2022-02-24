@@ -104,3 +104,14 @@ Run the following commands.
 ```shell
 poetry run python src/test.py --resume_from_checkpoint results/$TARGET/lightning_logs/version_0/checkpoints/best.ckpt
 ```
+
+## Citation
+
+```bibtex
+@article{KiyomaruKurohashi2022,
+    title={Minimally-Supervised Joint Learning of Event Volitionality and Subject Animacy Classification},
+    journal={Proceedings of the AAAI Conference on Artificial Intelligence},
+    author={Kiyomaru, Hirokazu and Kurohashi, Sadao},
+    year={2022}
+}
+```
