@@ -51,3 +51,20 @@ poetry run python src/create_training_dataset.py \
   --data_dir $(realpath ./data/extracted/$TARGET) \
   --output_dir $(realpath ./data/datasets/$TARGET)
 ```
+
+When using Sampling and Occlusion (SOC), run the following commands in addition.
+
+```shell
+TARGET="en"
+poetry run python src/assign_sample.py \
+  --data_dir $(realpath ./data/datasets/$TARGET) \
+  --model_name_or_path bert-base-cased
+
+TARGET="ja"
+# Download BERT pretrained by NICT (https://alaginrc.nict.go.jp/nict-bert/index.html)
+wget https://alaginrc.nict.go.jp/nict-bert/NICT_BERT-base_JapaneseWikipedia_32K_BPE.zip -O ./data/NICT_BERT-base_JapaneseWikipedia_32K_BPE.zip
+unzip ./data/NICT_BERT-base_JapaneseWikipedia_32K_BPE.zip -d ./data
+poetry run python src/assign_sample.py \
+  --data_dir $(realpath ./data/datasets/$TARGET) \
+  --model_name_or_path ./data/NICT_BERT-base_JapaneseWikipedia_32K_BPE
+```
