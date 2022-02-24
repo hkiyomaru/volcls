@@ -75,7 +75,7 @@ poetry run python src/assign_sample.py \
 
 ## Training
 
-Run the following command.
+Run the following commands.
 
 ```shell
 TARGET="en"
@@ -84,7 +84,8 @@ poetry run python src/train.py \
   --ani {NONE|VANILLA|WR|SOC|ADA} \
   --data_dir ./data/datasets/$TARGET \
   --model_name_or_path bert-base-cased \
-  --max_epochs 3
+  --max_epochs 3 \
+  --default_root_dir results/$TARGET
 
 TARGET="ja"
 poetry run python src/train.py \
@@ -92,5 +93,14 @@ poetry run python src/train.py \
   --ani {NONE|VANILLA|WR|SOC|ADA} \
   --data_dir ./data/datasets/$TARGET \
   --model_name_or_path ./data/NICT_BERT-base_JapaneseWikipedia_32K_BPE \
-  --max_epochs 3
+  --max_epochs 3 \
+  --default_root_dir results/$TARGET
+```
+
+## Test
+
+Run the following commands.
+
+```shell
+poetry run python src/test.py --resume_from_checkpoint results/$TARGET/lightning_logs/version_0/checkpoints/best.ckpt
 ```
