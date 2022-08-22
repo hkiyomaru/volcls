@@ -108,10 +108,16 @@ poetry run python src/test.py --resume_from_checkpoint results/$TARGET/lightning
 ## Citation
 
 ```bibtex
-@article{KiyomaruKurohashi2022,
-    title={Minimally-Supervised Joint Learning of Event Volitionality and Subject Animacy Classification},
-    journal={Proceedings of the AAAI Conference on Artificial Intelligence},
-    author={Kiyomaru, Hirokazu and Kurohashi, Sadao},
-    year={2022}
+@article{Kiyomaru_Kurohashi_2022,
+  title={Minimally-Supervised Joint Learning of Event Volitionality and Subject Animacy Classification},
+  volume={36},
+  url={https://ojs.aaai.org/index.php/AAAI/article/view/21339},
+  DOI={10.1609/aaai.v36i10.21339},
+  number={10},
+  journal={Proceedings of the AAAI Conference on Artificial Intelligence},
+  author={Kiyomaru, Hirokazu and Kurohashi, Sadao},
+  year={2022},
+  month={Jun.},
+  pages={10921-10929}
 }
 ```
